@@ -1,0 +1,15 @@
+.date {
+    box-sizing: border-box;
+    font-family: 'Verdana', Arial, sans-serif;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+    width: 55px;
+    height: 55px;
+    background-color: #6d78aa;
+    color: white;
+    border-radius: 50%;
+    box-shadow: 1px 4px 9px 0 #1412693d;
+}

@@ -1,0 +1,10 @@
+.link {
+    composes: btn from "../../index.module.css";
+    font-size: 14px;
+    margin-right: 6px;
+    margin-bottom: 3px;
+}
+
+.link:last-child {
+    margin-right: 0;
+}
