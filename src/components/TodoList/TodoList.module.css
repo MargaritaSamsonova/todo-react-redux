@@ -1,0 +1,9 @@
+.todos {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: 'Verdana', Arial, sans-serif;
+
+    margin-bottom: 40px;
+}

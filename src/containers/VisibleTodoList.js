@@ -17,7 +17,8 @@ const getFilteredList = (todos, filter) => {
 }
 
 const mapStateToProps = state => ({
-    todos: getFilteredList(state.todos, state.visibilityFilter)
+    todos: getFilteredList(state.todos, state.visibilityFilter),
+    lengthAllTodos: state.todos.length
 })
 
 const mapDispatchToProps = dispatch => ({
