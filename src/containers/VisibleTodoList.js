@@ -1,8 +1,8 @@
 import React from "react";
 import {connect} from "react-redux";
 import {TodoList} from "../components/TodoList";
-import {deleteTodo, toggleTodo, VisibilityFilters} from "../actions";
-import {getTodos, getVisibilityFilter} from "../redusers";
+import {deleteTodo, toggleTodo, getTodos} from "../modules/todos";
+import {getVisibilityFilter, VisibilityFilters} from "../modules/visibilityFilter";
 
 const getFilteredList = (todos, filter) => {
     switch (filter) {
