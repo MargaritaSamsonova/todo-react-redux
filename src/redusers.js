@@ -1,21 +1,18 @@
 import {combineReducers} from "redux";
-import {ADD_TODO, DELETE_TODO, TOGGLE_TODO} from "./actions";
-import {SET_VISIBILITY_FILTER, VisibilityFilters} from "./actions"
+import {handleActions} from "redux-actions";
+import {createSelector} from "reselect";
+import {addTodo, deleteTodo, toggleTodo} from "./actions";
+import {setVisibilityFilter, VisibilityFilters} from "./actions";
 
 const initialState = [];
 
-const todos = (state = initialState, action) => {
-    switch (action.type) {
-        case ADD_TODO:
-            return [...state, action.payload];
-            break;
-        case DELETE_TODO:
-            return state.filter((todo) => {
-                return !(todo.id === action.payload);
-            });
-            break;
-        case TOGGLE_TODO:
-            return state.map((todo) => {
+const todos = handleActions({
+        [addTodo]: (state, action) => [...state, action.payload],
+        [deleteTodo]: (state, action) => (state.filter((todo) => {
+            return !(todo.id === action.payload);
+        })),
+        [toggleTodo]: (state, action) => (
+            state.map((todo) => {
                 if (todo.id === action.payload) {
                     return {
                         ...todo,
@@ -24,22 +21,16 @@ const todos = (state = initialState, action) => {
                 }
 
                 return todo;
-            });
-            break;
-        default:
-            return state;
-    }
-}
+            })
+        )
+}, initialState);
 
-const visibilityFilter = (state = VisibilityFilters.SHOW_ALL, action) => {
-    switch (action.type) {
-        case SET_VISIBILITY_FILTER:
-            return action.payload;
-            break;
-        default:
-            return state;
-    }
-}
+const visibilityFilter = handleActions({
+    [setVisibilityFilter]: (state, action) => action.payload,
+}, VisibilityFilters.SHOW_ALL);
+
+export const getTodos = state => state.todos;
+export const getVisibilityFilter = state => state.visibilityFilter;
 
 export default combineReducers({
     todos,

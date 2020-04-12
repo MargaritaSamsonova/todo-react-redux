@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import {TodoList} from "../components/TodoList";
 import {deleteTodo, toggleTodo, VisibilityFilters} from "../actions";
+import {getTodos, getVisibilityFilter} from "../redusers";
 
 const getFilteredList = (todos, filter) => {
     switch (filter) {
@@ -17,8 +18,8 @@ const getFilteredList = (todos, filter) => {
 }
 
 const mapStateToProps = state => ({
-    todos: getFilteredList(state.todos, state.visibilityFilter),
-    lengthAllTodos: state.todos.length
+    todos: getFilteredList(getTodos(state), getVisibilityFilter(state)),
+    lengthAllTodos: getTodos(state).length
 })
 
 const mapDispatchToProps = dispatch => ({
